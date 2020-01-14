@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="550e7834-d00e-4f73-88b6-4d87fe8f7722" name="Default Changelist" comment="" />
+    <list default="true" id="550e7834-d00e-4f73-88b6-4d87fe8f7722" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/714b33e1-b4de-43c6-bb5e-790673124148.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/714b33e1-b4de-43c6-bb5e-790673124148.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="1f08ad2b-ab76-46cf-b05e-d0ecdeb4d58d" />
@@ -26,6 +37,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
@@ -128,6 +142,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1WO0MTNZwqTgScSU3Gj0nZeDr33" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -137,7 +152,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../phpCourse/test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -145,7 +160,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -171,12 +186,7 @@
             <expand>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:SQLite - DB" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:SQLite - DB" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3e666bf4" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="root:database.sqlite" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -196,6 +206,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579005285283</updated>
       <workItem from="1579005287084" duration="2677000" />
+      <workItem from="1579030037430" duration="2305000" />
     </task>
     <servers />
   </component>
@@ -203,18 +214,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1040" y="170" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579007777069">
+    <state x="1040" y="170" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579032093215">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="1040" y="170" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1579007777069" />
+    <state x="1040" y="170" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1579032093215" />
+    <state x="1090" y="323" width="768" height="460" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1579031154302">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="1090" y="323" width="768" height="460" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1579031154302" />
     <state x="678" y="425" width="590" height="259" key="ComposerCompositePathDialog" timestamp="1579005398328">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="678" y="425" width="590" height="259" key="ComposerCompositePathDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1579005398328" />
-    <state x="756" y="300" width="424" height="513" key="FileChooserDialogImpl" timestamp="1579007770222">
+    <state x="756" y="300" width="424" height="513" key="FileChooserDialogImpl" timestamp="1579032271193">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="756" y="300" width="424" height="513" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1579007770222" />
+    <state x="756" y="300" width="424" height="513" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1579032271193" />
     <state width="858" height="254" key="GridCell.Tab.0.bottom" timestamp="1579007038582">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -231,14 +246,18 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="858" height="254" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1579007038581" />
-    <state x="1180" y="359" width="603" height="389" key="PHPComposerAddDependencyDialogDimensionKey" timestamp="1579005451402">
+    <state width="263" height="541" key="HiddenNamespacesPopup" timestamp="1579031192638">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="1180" y="359" width="603" height="389" key="PHPComposerAddDependencyDialogDimensionKey/67.27.1853.1053@67.27.1853.1053" timestamp="1579005451402" />
-    <state x="404" y="149" key="SettingsEditor" timestamp="1579007964194">
+    <state width="263" height="541" key="HiddenNamespacesPopup/67.27.1853.1053@67.27.1853.1053" timestamp="1579031192638" />
+    <state x="1180" y="359" width="603" height="389" key="PHPComposerAddDependencyDialogDimensionKey" timestamp="1579031705931">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="404" y="149" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1579007964194" />
+    <state x="1180" y="359" width="603" height="389" key="PHPComposerAddDependencyDialogDimensionKey/67.27.1853.1053@67.27.1853.1053" timestamp="1579031705931" />
+    <state x="404" y="149" key="SettingsEditor" timestamp="1579030392759">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="404" y="149" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1579030392759" />
     <state x="719" y="391" width="508" height="330" key="SymfonyComponentCompositeDataDialog" timestamp="1579005607474">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
