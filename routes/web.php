@@ -19,6 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/user/{id}', 'UserController@show');
-
-Route::get('/users', 'UserController@index');
+Route::resource('users', 'UserController');
