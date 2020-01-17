@@ -23,6 +23,6 @@ Route::resource('users', 'UserController')->only([
     'index', 'show'
 ]);
 
-Route::prefix('admin')->group(function ()  {
-  Route::resource('users', 'Admin\UserController')->names('admin.users');
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', 'UserController');
 });
