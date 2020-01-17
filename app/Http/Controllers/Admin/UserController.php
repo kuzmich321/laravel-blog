@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.showSingleUser', [
+        return view('admin.show', [
             'user' => $user
         ]);
     }
