@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController')->only([
     'index', 'show'
 ]);
+
+Route::prefix('admin')->group(fn() => Route::resource('users', 'Admin\UserController'));
