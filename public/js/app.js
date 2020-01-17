@@ -49685,8 +49685,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/andrew/WebDev/PhpstormProjects/laravel-blog-dev/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/andrew/WebDev/PhpstormProjects/laravel-blog-dev/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
