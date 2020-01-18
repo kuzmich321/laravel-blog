@@ -14,7 +14,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">{{ __('Name') }}</label>
-                                <input type="text" name="name" class="form-control" required autofocus>
+                                <input type="text" name="name" class="form-control"
+                                       value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -23,7 +24,8 @@
 
                             <div class="form-group">
                                 <label for="email">{{ __('Email') }}</label>
-                                <input type="email" name="email" class="form-control" required autofocus>
+                                <input type="email" name="email" class="form-control"
+                                       value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                 <span class="text-danger">{{ $message }}</span>
@@ -32,7 +34,8 @@
 
                             <div class="form-group">
                                 <label for="password">{{ __('Password') }}</label>
-                                <input type="password" name="password" class="form-control" required autofocus>
+                                <input type="password" name="password" class="form-control" autocomplete="new-password"
+                                       required autofocus>
 
                                 @error('password')
                                 <span class="text-danger">{{ $message }}</span>
@@ -41,7 +44,8 @@
 
                             <div class="form-group">
                                 <label for="password_confirmation">{{ __('Confirm password') }}</label>
-                                <input type="password" name="password_confirmation" class="form-control" required
+                                <input type="password" name="password_confirmation" class="form-control"
+                                       autocomplete="new-password" required
                                        autofocus>
 
                                 @error('password_confirmation')

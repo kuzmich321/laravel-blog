@@ -47,12 +47,12 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:8'
         ]);
 
-        $input = $request->only('name', 'email', 'password');
-        $input['password'] = Hash::make($input['password']);
+        $validatedData = $request->all();
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
-        $user = User::create($input);
+        $user = User::create($validatedData);
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        return redirect()->route('admin.users.index')->with('status', 'User created successfully');
     }
 
     /**
@@ -100,7 +100,7 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('admin.users.show', $user);
+        return redirect()->route('admin.users.show', $user)->with('status', 'User updated successfully');
     }
 
     /**

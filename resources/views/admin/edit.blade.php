@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label for="password">Change Password</label>
                                 <input type="password" name="password" class="form-control"
-                                       value="{{ old('email', $user->password) }}" required autofocus>
+                                       value="{{ old('password', $user->password) }}" required autofocus>
 
                                 @error('password')
                                 <span class="text-danger">{{ $message }}</span>
@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label for="password_confirmation">Confirm Password</label>
                                 <input type="password" name="password_confirmation" class="form-control"
-                                       value="{{ old('email', $user->password) }}" required
+                                       value="{{ old('password', $user->password) }}" required
                                        autofocus>
 
                                 @error('password_confirmation')
