@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use DB;
+use Hash;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::paginate();
 
         return view('admin.index', ['users' => $users]);
     }
@@ -27,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -38,7 +40,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $input = $request->only('name', 'email', 'password');
+        $input['password'] = Hash::make($input['password']);
+
+        $user = User::create($input);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
     }
 
     /**
