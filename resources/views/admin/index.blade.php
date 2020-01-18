@@ -12,7 +12,7 @@
             </thead>
             <tbody>
             @foreach($users as $user)
-                <tr onclick="window.location='{{ route("admin.users.edit", [$user->id]) }}'" style="cursor: pointer">
+                <tr onclick="window.location='{{ route("admin.users.edit", [$user]) }}'" style="cursor: pointer">
                     <th scope="row">{{$user->id}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
