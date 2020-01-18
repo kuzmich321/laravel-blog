@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -89,11 +90,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $data = request()->validate([
-            'name' => 'required|min:2'
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|confirmed|min:8'
         ]);
 
-        $user->update($data);
+        $validatedData = $request->all();
+
+        $user->update($validatedData);
 
         return redirect()->route('admin.users.show', $user);
     }
