@@ -62,7 +62,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -74,7 +76,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required|min:2'
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('admin.users.show', $user);
     }
 
     /**
