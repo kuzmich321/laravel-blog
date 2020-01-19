@@ -41,13 +41,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:8'
         ]);
 
-        $validatedData = $request->all();
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         $user = User::create($validatedData);
@@ -90,13 +89,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed|min:8'
         ]);
-
-        $validatedData = $request->all();
 
         $user->update($validatedData);
 
