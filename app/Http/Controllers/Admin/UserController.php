@@ -49,7 +49,7 @@ class UserController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        $user = User::create($validatedData);
+        User::create($validatedData);
 
         return redirect()->route('admin.users.index')->with('status', 'User created successfully');
     }
@@ -92,8 +92,16 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'password' => 'required|confirmed|min:8'
+            'password' => 'nullable|confirmed|min:8'
         ]);
+
+        if ($validatedData['password'] === null) {
+            unset($validatedData['password']);
+        } else {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        }
+
+        dd($validatedData);
 
         $user->update($validatedData);
 
