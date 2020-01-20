@@ -9,6 +9,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th>Delete</th>
+                <th>Restore</th>
             </tr>
             </thead>
             <tbody>
@@ -21,8 +22,17 @@
                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-sm btn-danger">X</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
+                    </td>
+                    <td>
+                        @if($user->trashed())
+                            <form action="{{ route('admin.users.restore', $user) }}" method="POST">
+                                @csrf
+                                @method('patch')
+                                <button type="submit" class="btn btn-sm btn-primary">Restore</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

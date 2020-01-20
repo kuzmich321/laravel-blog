@@ -24,5 +24,6 @@ Route::resource('users', 'UserController')->only([
 ]);
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::patch('users/{user}/restore', 'UserController@restore')->name('users.restore');
     Route::resource('users', 'UserController');
 });

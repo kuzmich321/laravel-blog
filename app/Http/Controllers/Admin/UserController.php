@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::withTrashed()->paginate();
 
         return view('admin.index', ['users' => $users]);
     }
@@ -83,9 +83,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -109,8 +109,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(User $user)
     {
@@ -120,13 +121,12 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $id
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function restore(User $id)
+    public function restore(User $user)
     {
-        User::withTrashed()
-            ->findOrFail($id)
-            ->restore();
+        $user->restore();
 
         return redirect()->route('admin.users.index')->with('status', 'User restored successfully');
     }
