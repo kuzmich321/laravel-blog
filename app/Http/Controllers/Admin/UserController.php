@@ -119,10 +119,13 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('status', 'User deleted successfully');
     }
 
+    /**
+     * @param User $user
+     */
     public function restore(User $user)
     {
         User::withTrashed()
-            ->where('id', $user->id)
+            ->where('id', $user::findOrFail($user->id))
             ->restore();
     }
 }
