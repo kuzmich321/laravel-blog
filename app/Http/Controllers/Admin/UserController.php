@@ -101,8 +101,6 @@ class UserController extends Controller
             $validatedData['password'] = Hash::make($validatedData['password']);
         }
 
-        dd($validatedData);
-
         $user->update($validatedData);
 
         return redirect()->route('admin.users.show', $user)->with('status', 'User updated successfully');
