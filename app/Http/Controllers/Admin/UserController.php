@@ -120,12 +120,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $user
+     * @param User $id
      */
-    public function restore(User $user)
+    public function restore(User $id)
     {
         User::withTrashed()
-            ->where('id', $user::findOrFail($user->id))
+            ->findOrFail($id)
             ->restore();
+
+        return redirect()->route('admin.users.index')->with('status', 'User restored successfully');
     }
 }
