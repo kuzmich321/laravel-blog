@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Http\Request;
-use DB;
+use Exception;
 use Hash;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -26,7 +27,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -36,8 +37,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -51,14 +52,14 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return redirect()->route('admin.users.index')->with('status', 'User created successfully');
+        return redirect()->route('admin.users.index')->with('status', __('statuses.users.created'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
     public function show(User $user)
     {
@@ -70,8 +71,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
     public function edit(User $user)
     {
@@ -85,7 +86,7 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -103,31 +104,39 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('admin.users.show', $user)->with('status', 'User updated successfully');
+        return redirect()
+            ->route('admin.users.show', $user)
+            ->with('status', __('statuses.users.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('status', 'User deleted successfully');
+        return redirect()
+            ->route('admin.users.index')
+            ->with('status', __('statuses.users.destroyed'));
     }
 
     /**
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function restore(User $user)
+    public function restore($id)
     {
-        $user->restore();
+        User::withTrashed()
+            ->findOrFail($id)
+            ->restore();
 
-        return redirect()->route('admin.users.index')->with('status', 'User restored successfully');
+        return redirect()
+            ->route('admin.users.index')
+            ->with('status', __('statuses.users.restored'));
     }
 }

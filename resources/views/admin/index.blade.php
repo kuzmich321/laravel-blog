@@ -19,25 +19,38 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
-                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
+                        <button type="submit"
+                                formaction="{{ route('admin.users.destroy', $user) }}"
+                                formmethod="POST"
+                                class="btn btn-sm btn-danger"
+                                form="delete"
+                                @if($user->trashed())
+                                disabled
+                            @endif>
+                            Delete
+                        </button>
                     </td>
                     <td>
                         @if($user->trashed())
-                            <form action="{{ route('admin.users.restore', $user) }}" method="POST">
-                                @csrf
-                                @method('patch')
-                                <button type="submit" class="btn btn-sm btn-primary">Restore</button>
-                            </form>
+                            <button type="submit"
+                                    formaction="{{ route('admin.users.restore', $user) }}"
+                                    class="btn btn-sm btn-primary"
+                                    form="restore">Restore
+                            </button>
                         @endif
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+        <form id="delete" method=POST">
+            @csrf
+            @method('DELETE')
+        </form>
+        <form id="restore" method="POST">
+            @csrf
+            @method('PATCH')
+        </form>
         <div class="pagination-wrapper d-flex justify-content-center">
             {{ $users->links() }}
         </div>
