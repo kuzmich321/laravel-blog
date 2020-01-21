@@ -11,7 +11,8 @@
                         <div class="buttons float-right">
                             <button type="submit"
                                     class="btn btn-info"
-                                    onclick="window.location='{{ route('admin.posts.edit', $post) }}'">Edit
+                                    onclick="window.location='{{ route('admin.posts.edit', $post) }}'"
+                                    @if($post->trashed()) disabled @endif>Edit
                             </button>
                             <button type="submit"
                                     class="btn btn-danger"
