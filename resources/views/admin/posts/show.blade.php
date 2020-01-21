@@ -8,7 +8,7 @@
                 <p class="card-text">{{ $post->description }}</p>
                 <blockquote class="blockquote mb-0">
                     <footer class="blockquote-footer">The post was
-                        created at {{ date('d m Y', strtotime($post->created_at)) }}</footer>
+                        created at {{ $post->created_at->format('Y.m.d') }}</footer>
                 </blockquote>
             </div>
         </div>

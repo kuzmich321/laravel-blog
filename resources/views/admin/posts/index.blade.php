@@ -9,11 +9,8 @@
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->description }}</p>
                         <div class="buttons float-right">
-                            <button type="submit"
-                                    class="btn btn-info"
-                                    onclick="window.location='{{ route('admin.posts.edit', $post) }}'"
-                                    @if($post->trashed()) disabled @endif>Edit
-                            </button>
+                            <a href="{{ route('admin.posts.edit', $post) }}"
+                               class="btn btn-info @if($post->trashed()) disabled @endif">Edit</a>
                             <button type="submit"
                                     class="btn btn-danger"
                                     form="posts-delete"

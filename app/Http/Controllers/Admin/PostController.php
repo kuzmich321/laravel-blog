@@ -42,8 +42,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|min:1|max:255',
-            'description' => 'required|min:1|max:255'
+            'title' => 'required|min:2|max:255',
+            'description' => 'required|min:10|max:255'
         ]);
 
         Post::create($validatedData);
@@ -89,8 +89,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $request->validate([
-            'title' => 'required|min:1|max:255',
-            'description' => 'required|max:255'
+            'title' => 'required|min:2|max:255',
+            'description' => 'required|min:10|max:255'
         ]);
 
         $post->update($validatedData);

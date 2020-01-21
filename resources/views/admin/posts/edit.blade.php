@@ -13,12 +13,28 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" name="title" class="form-control" value="{{ $post->title }}">
+                            <input type="text"
+                                   name="title"
+                                   class="form-control"
+                                   value="{{ $post->title }}"
+                                   required
+                                   autocomplete="title"
+                                   autofocus>
+                            @error('title')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" class="form-control"
-                                      rows="3">{{ $post->description }}</textarea>
+                            <textarea name="description"
+                                      class="form-control"
+                                      rows="3"
+                                      required
+                                      autocomplete="description"
+                                      autofocus>{{ $post->description }}</textarea>
+                            @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="button-holder d-flex justify-content-center p-3">
