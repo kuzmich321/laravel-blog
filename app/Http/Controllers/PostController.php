@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PostController extends Controller
@@ -15,28 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $posts = Post::paginate();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('posts.index', [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -47,40 +29,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Post $post
-     * @return Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Post $post
-     * @return Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Post $post
-     * @return Response
-     */
-    public function destroy(Post $post)
-    {
-        //
+        return view('posts.show', [
+            'post' => $post
+        ]);
     }
 }
