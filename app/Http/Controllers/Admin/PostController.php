@@ -65,7 +65,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -77,7 +79,16 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|min:1|max:255',
+            'description' => 'required|max:255'
+        ]);
+
+        $post->update($validatedData);
+
+        return redirect()
+            ->route('admin.posts.show', $post)
+            ->with('status', __('statuses.posts.updated'));
     }
 
     /**

@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="container">
-        <div class="posts-wrapper">
+        <div class="posts-wrapper w-90 m-auto">
             @foreach($posts as $post)
-                <div class="card" onclick="window.location='{{ route("posts.show", $post) }}'">
+                <div class="card mb-3"
+                     onclick="window.location='{{ route("posts.show", $post) }}'"
+                     style="cursor: pointer;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->description }}</p>
@@ -17,19 +19,3 @@
         </div>
     </div>
 @endsection
-
-<style>
-    .posts-wrapper {
-        width: 90%;
-        margin: auto;
-    }
-
-    .card {
-        margin-bottom: 10px;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-</style>

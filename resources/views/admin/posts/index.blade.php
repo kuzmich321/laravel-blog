@@ -2,13 +2,19 @@
 
 @section('content')
     <div class="container">
-        <div class="posts-wrapper">
+        <div class="posts-wrapper w-90 m-auto">
             @foreach($posts as $post)
-                <div class="card" onclick="window.location='{{ route("admin.posts.edit", $post) }}'">
-                    <div class="card-body">
+                <div class="card bg-transparent border-dark mb-3"
+                     style="cursor: pointer">
+                    <div class="card-body text-dark">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->description }}</p>
                         <div class="buttons float-right">
+                            <button type="submit"
+                                    class="btn btn-info"
+                                    form="posts-edit"
+                                    formaction="{{ route('admin.posts.edit', $post) }}">Edit
+                            </button>
                             <button class="btn btn-danger">Delete</button>
                             <button class="btn btn-primary">Restore</button>
                         </div>
@@ -16,25 +22,9 @@
                 </div>
             @endforeach
         </div>
+        <form id="posts-edit" method="GET"></form>
         <div class="pagination-wrapper d-flex justify-content-center">
             {{ $posts->links() }}
         </div>
     </div>
 @endsection
-
-<style>
-    .posts-wrapper {
-        width: 90%;
-        margin: auto;
-    }
-
-    .card {
-        margin-bottom: 10px;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-</style>
-
