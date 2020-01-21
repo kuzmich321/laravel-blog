@@ -52,7 +52,9 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return redirect()->route('admin.users.index')->with('status', __('statuses.users.created'));
+        return redirect()
+            ->route('admin.users.index')
+            ->with('status', __('statuses.users.created'));
     }
 
     /**

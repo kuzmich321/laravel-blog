@@ -23,7 +23,7 @@
                                 formaction="{{ route('admin.users.destroy', $user) }}"
                                 formmethod="POST"
                                 class="btn btn-sm btn-danger"
-                                form="delete"
+                                form="users-delete"
                                 @if($user->trashed())
                                 disabled
                             @endif>
@@ -35,7 +35,7 @@
                             <button type="submit"
                                     formaction="{{ route('admin.users.restore', $user) }}"
                                     class="btn btn-sm btn-primary"
-                                    form="restore">Restore
+                                    form="users-restore">Restore
                             </button>
                         @endif
                     </td>
@@ -43,11 +43,11 @@
             @endforeach
             </tbody>
         </table>
-        <form id="delete" method=POST">
+        <form id="users-delete" method=POST">
             @csrf
             @method('DELETE')
         </form>
-        <form id="restore" method="POST">
+        <form id="users-restore" method="POST">
             @csrf
             @method('PATCH')
         </form>
