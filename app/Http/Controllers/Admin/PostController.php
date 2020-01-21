@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = Post::withTrashed()->paginate();
 
         return view('admin.posts.index', [
             'posts' => $posts
@@ -99,6 +99,25 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('status', __('statuses.posts.destroyed'));
+    }
+
+    /**
+     * @param int $id
+     * @return Response
+     */
+    public function restore($id)
+    {
+        Post::withTrashed()
+            ->findOrFail($id)
+            ->restore();
+
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('status', __('statuses.posts.restored'));
     }
 }

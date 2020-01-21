@@ -13,13 +13,31 @@
                                     class="btn btn-info"
                                     onclick="window.location='{{ route('admin.posts.edit', $post) }}'">Edit
                             </button>
-                            <button class="btn btn-danger">Delete</button>
-                            <button class="btn btn-primary">Restore</button>
+                            <button type="submit"
+                                    class="btn btn-danger"
+                                    form="posts-delete"
+                                    formaction="{{ route('admin.posts.destroy', $post) }}"
+                                    @if($post->trashed()) disabled @endif >Delete
+                            </button>
+                            <button type="submit"
+                                    class="btn btn-success"
+                                    form="posts-restore"
+                                    formaction="{{ route('admin.posts.restore', $post) }}"
+                                    @if(!$post->trashed()) disabled @endif>Restore
+                            </button>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+        <form id="posts-delete" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+        <form id="posts-restore" method="POST">
+            @csrf
+            @method('PATCH')
+        </form>
         <div class="pagination-wrapper d-flex justify-content-center">
             {{ $posts->links() }}
         </div>

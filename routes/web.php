@@ -29,6 +29,7 @@ Route::resource('posts', 'PostController')->only([
 
 Route::namespace('Admin')->prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::patch('users/{user}/restore', 'UserController@restore')->name('users.restore');
+    Route::patch('posts/{post}/restore', 'PostController@restore')->name('posts.restore');
     Route::resource('users', 'UserController');
     Route::resource('posts', 'PostController');
 });
