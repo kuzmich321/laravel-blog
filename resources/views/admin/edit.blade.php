@@ -52,8 +52,9 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <div class="button-holder d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary w-25">Edit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

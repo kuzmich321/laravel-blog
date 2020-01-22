@@ -20,7 +20,7 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td><a href="{{ route('admin.users.edit', $user) }}"
-                           class="btn btn-sm btn-info">Edit</a></td>
+                           class="btn btn-sm btn-info @if($user->trashed()) disabled @endif">Edit</a></td>
                     <td>
                         <button type="submit"
                                 formaction="{{ route('admin.users.destroy', $user) }}"
