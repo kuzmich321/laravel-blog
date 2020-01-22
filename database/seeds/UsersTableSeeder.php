@@ -14,8 +14,8 @@ class UsersTableSeeder extends Seeder
         factory(App\User::class, 20)
             ->create()
             ->each(function ($user) {
-                $user->posts()->createMany(
-                    factory(App\Post::class, 3)->make()->toArray()
+                $user->posts()->saveMany(
+                    factory(App\Post::class, 3)->make()
                 );
             });
     }
