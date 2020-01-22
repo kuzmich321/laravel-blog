@@ -8,16 +8,19 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th>Edit</th>
                 <th>Delete</th>
                 <th>Restore</th>
             </tr>
             </thead>
             <tbody>
             @foreach($users as $user)
-                <tr onclick="window.location='{{ route("admin.users.edit", $user) }}'" style="cursor: pointer">
+                <tr>
                     <th scope="row">{{$user->id}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td><a href="{{ route('admin.users.edit', $user) }}"
+                           class="btn btn-sm btn-info @if($user->trashed()) disabled @endif">Edit</a></td>
                     <td>
                         <button type="submit"
                                 formaction="{{ route('admin.users.destroy', $user) }}"
@@ -31,13 +34,12 @@
                         </button>
                     </td>
                     <td>
-                        @if($user->trashed())
-                            <button type="submit"
-                                    formaction="{{ route('admin.users.restore', $user) }}"
-                                    class="btn btn-sm btn-primary"
-                                    form="users-restore">Restore
-                            </button>
-                        @endif
+                        <button type="submit"
+                                formaction="{{ route('admin.users.restore', $user) }}"
+                                class="btn btn-sm btn-primary"
+                                form="users-restore"
+                                @if(!$user->trashed()) disabled @endif>Restore
+                        </button>
                     </td>
                 </tr>
             @endforeach
