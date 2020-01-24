@@ -20,5 +20,15 @@
             </tr>
             </tbody>
         </table>
+
+        @foreach($user->posts as $post)
+            <div class="card bg-transparent border border-dark mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <p class="card-text">{{ $post->description }}</p>
+                </div>
+            </div>
+        @endforeach
+
     </div>
 @endsection

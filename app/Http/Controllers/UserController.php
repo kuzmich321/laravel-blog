@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('posts')->paginate();
 
-        return view('users', [
+        return view('index', [
             'users' => $users
         ]);
     }
@@ -24,12 +24,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
     public function show(User $user)
     {
-        return view('singleUser', [
+        $user->load('posts');
+
+        return view('show', [
             'user' => $user
         ]);
     }

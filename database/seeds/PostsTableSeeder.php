@@ -11,6 +11,12 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Post::class, 20)->create();
+        factory(App\Post::class, 100)
+            ->make()
+            ->each(function ($post) {
+                $randomUser = App\User::inRandomOrder()->first();
+                $post->user_id = $randomUser->id;
+                $post->save();
+            });
     }
 }
