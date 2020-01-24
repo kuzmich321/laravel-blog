@@ -24,5 +24,8 @@
             @endforeach
             </tbody>
         </table>
+        <div class="pagination-wrapper d-flex justify-content-center">
+            {{ $users->links() }}
+        </div>
     </div>
 @endsection

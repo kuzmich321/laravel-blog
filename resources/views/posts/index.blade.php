@@ -15,5 +15,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="pagination-wrapper d-flex justify-content-center">
+            {{ $posts->links() }}
+        </div>
     </div>
 @endsection
