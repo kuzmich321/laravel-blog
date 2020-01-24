@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('posts')->get();
 
         return view('index', [
             'users' => $users
@@ -29,6 +29,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->load('posts');
+
         return view('show', [
             'user' => $user
         ]);
