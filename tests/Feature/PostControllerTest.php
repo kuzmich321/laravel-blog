@@ -15,13 +15,13 @@ class PostControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $posts = factory(Post::class, 2)->states('with_user')->create();
+        factory(Post::class, 2)->create();
 
         $response = $this->get(route('posts.index'));
 
-        $receivedData = $response->getOriginalContent()->getData($posts);
-
-        $response->assertStatus(200)->assertViewIs('posts.index')->assertViewHasAll($receivedData);
+        $response->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertViewHas('posts');
     }
 
     /**
@@ -29,12 +29,12 @@ class PostControllerTest extends TestCase
      */
     public function testShow()
     {
-        $post = factory(Post::class)->states('with_user')->create();
+        $post = factory(Post::class)->create();
 
         $response = $this->get(route('posts.show', $post));
 
-        $receivedData = $response->getOriginalContent()->getData($post);
-
-        $response->assertStatus(200)->assertViewIs('posts.show')->assertViewHasAll($receivedData);
+        $response->assertOk()
+            ->assertViewIs('posts.show')
+            ->assertViewHas('post');
     }
 }

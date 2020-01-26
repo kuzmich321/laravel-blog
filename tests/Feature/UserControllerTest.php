@@ -15,13 +15,13 @@ class UserControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $users = factory(User::class, 2)->states('with_posts')->create();
+        factory(User::class, 2)->create();
 
         $response = $this->get(route('users.index'));
 
-        $receivedData = $response->getOriginalContent()->getData($users);
-
-        $response->assertStatus(200)->assertViewIs('index')->assertViewHasAll($receivedData);
+        $response->assertOk()
+            ->assertViewIs('index')
+            ->assertViewHas('users');
     }
 
     /**
@@ -29,12 +29,12 @@ class UserControllerTest extends TestCase
      */
     public function testShow()
     {
-        $user = factory(User::class)->states('with_posts')->create();
+        $user = factory(User::class)->create();
 
         $response = $this->get(route('users.show', $user));
 
-        $receivedData = $response->getOriginalContent()->getData($user);
-
-        $response->assertStatus(200)->assertViewIs('show')->assertViewHasAll($receivedData);
+        $response->assertOk()
+            ->assertViewIs('show')
+            ->assertViewHas('user');
     }
 }
