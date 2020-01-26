@@ -13,7 +13,7 @@ class PostControllerTest extends TestCase
     /**
      * @test
      */
-    public function indexMethodReturnsAllPosts()
+    public function testIndex()
     {
         $posts = factory(Post::class, 2)->states('with_user')->create();
 
@@ -27,7 +27,7 @@ class PostControllerTest extends TestCase
     /**
      * @test
      */
-    public function showMethodReturnsSinglePost()
+    public function testShow()
     {
         $post = factory(Post::class)->states('with_user')->create();
 

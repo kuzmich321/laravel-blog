@@ -13,7 +13,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function indexMethodReturnsAllUsers()
+    public function testIndex()
     {
         $users = factory(User::class, 2)->states('with_posts')->create();
 
@@ -27,7 +27,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function showMethodReturnsSingleUser()
+    public function testShow()
     {
         $user = factory(User::class)->states('with_posts')->create();
 
