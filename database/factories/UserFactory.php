@@ -27,3 +27,11 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory
+    ->state(User::class, 'with_posts', [])
+    ->afterCreatingState(User::class, 'with_posts', function ($user, $faker) {
+        factory(App\Post::class, 2)->create([
+            'user_id' => $user->id
+        ]);
+    });
