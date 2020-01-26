@@ -12,3 +12,12 @@ $factory->define(Post::class, function (Faker $faker) {
         'description' => $faker->paragraph
     ];
 });
+
+$factory
+    ->state(Post::class, 'with_user', [])
+    ->afterMakingState(Post::class, 'with_user', function ($post, $faker) {
+        $user = factory(App\User::class)->create();
+        $post->user_id = $user->id;
+        $post->save();
+    });
+

@@ -3,35 +3,38 @@
 namespace Tests\Feature;
 
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      */
-    public function IndexMethod_Returns_AllUsers()
+    public function indexMethodReturnsAllUsers()
     {
-        $users = factory(User::class, 2)->create();
+        $users = factory(User::class, 2)->states('with_posts')->create();
 
-        $response = $this->get(route('users.index', [
-            'users' => $users
-        ]));
+        $response = $this->get(route('users.index'));
 
-        $response->assertStatus(200);
+        $receivedData = $response->getOriginalContent()->getData($users);
+
+        $response->assertStatus(200)->assertViewIs('index')->assertViewHasAll($receivedData);
     }
 
     /**
      * @test
      */
-    public function ShowMethod_Returns_SingleUser()
+    public function showMethodReturnsSingleUser()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('with_posts')->create();
 
-        $response = $this->get(route('users.show', [
-            'user' => $user
-        ]));
+        $response = $this->get(route('users.show', $user));
 
-        $response->assertStatus(200);
+        $receivedData = $response->getOriginalContent()->getData($user);
+
+        $response->assertStatus(200)->assertViewIs('show')->assertViewHasAll($receivedData);
     }
 }
