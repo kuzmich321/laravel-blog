@@ -148,4 +148,25 @@ class UserControllerTest extends TestCase
             'id' => $user->id
         ]);
     }
+
+    /** @test */
+    public function testRestore()
+    {
+        $actingUser = factory(User::class)->create();
+
+        $user = factory(User::class)->create([
+            'deleted_at' => now()
+        ]);
+
+        $response = $this->actingAs($actingUser)
+            ->patch(route('admin.users.restore', $user));
+
+        $response->assertRedirect(route('admin.users.index'));
+
+        $response->assertSessionHas('status', __('statuses.users.restored'));
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id
+        ]);
+    }
 }
