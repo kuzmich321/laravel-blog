@@ -137,8 +137,6 @@ class PostControllerTest extends TestCase
             'user_id' => $createdUser->id
         ];
 
-        dd($formData);
-
         $response = $this->post($url, $formData);
 
         $response->assertRedirect(route('login'));
@@ -176,6 +174,33 @@ class PostControllerTest extends TestCase
         $response->assertSessionHas('status', __('statuses.posts.destroyed'));
 
         $this->assertSoftDeleted('posts', [
+            'id' => $createdPost->id
+        ]);
+    }
+
+    /** @test */
+    public function testRestore()
+    {
+        $createdPost = factory(Post::class)->create([
+            'deleted_at' => now()
+        ]);
+
+        $url = route('admin.posts.restore', $createdPost);
+
+        $response = $this->patch($url);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->patch($url);
+
+        $response->assertRedirect(route('admin.posts.index'));
+
+        $response->assertSessionHas('status', __('statuses.posts.restored'));
+
+        $this->assertDatabaseHas('posts', [
             'id' => $createdPost->id
         ]);
     }
