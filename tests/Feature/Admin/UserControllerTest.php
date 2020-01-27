@@ -123,7 +123,7 @@ class UserControllerTest extends TestCase
         $actingUser = factory(User::class)->create();
 
         $response = $this->actingAs($actingUser)
-            ->get(route('admin.users.create'));
+            ->get($url);
 
         $response->assertOk()
             ->assertViewIs('admin.create');

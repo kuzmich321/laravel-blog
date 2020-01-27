@@ -103,4 +103,80 @@ class PostControllerTest extends TestCase
 
         $this->assertDatabaseHas('posts', $formData);
     }
+
+    /** @test */
+    public function testCreate()
+    {
+        $url = route('admin.posts.create');
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->get($url);
+
+        $response->assertOk()
+            ->assertViewIs('admin.posts.create');
+    }
+
+    // Gonna be fixed soon
+
+    /** @test */
+    public function testStore()
+    {
+        $url = route('admin.posts.store');
+
+        $createdUser = factory(User::class)->create();
+
+        $formData = [
+            'title' => $this->faker->title(),
+            'description' => $this->faker->paragraph(),
+            'user_id' => $createdUser->id
+        ];
+
+        dd($formData);
+
+        $response = $this->post($url, $formData);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->post($url, $formData);
+
+        $response->assertRedirect(route('admin.posts.index'));
+
+        $response->assertSessionHas('status', __('statuses.posts.created'));
+
+        $this->assertDatabaseHas('posts', $formData);
+    }
+
+    /** @test */
+    public function testDestroy()
+    {
+        $createdPost = factory(Post::class)->create();
+
+        $url = route('admin.posts.destroy', $createdPost);
+
+        $response = $this->delete($url);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->delete($url);
+
+        $response->assertRedirect(route('admin.posts.index'));
+
+        $response->assertSessionHas('status', __('statuses.posts.destroyed'));
+
+        $this->assertSoftDeleted('posts', [
+            'id' => $createdPost->id
+        ]);
+    }
 }
