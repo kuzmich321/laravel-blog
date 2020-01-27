@@ -15,12 +15,18 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testIndex()
     {
+        $url = route('admin.users.index');
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
         factory(User::class, 2)->create();
 
         $response = $this->actingAs($actingUser)
-            ->get(route('admin.users.index'));
+            ->get($url);
 
         $response->assertOk()
             ->assertViewIs('admin.index')
@@ -30,12 +36,18 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testShow()
     {
+        $createdUser = factory(User::class)->create();
+
+        $url = route('admin.users.show', $createdUser);
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
-        $user = factory(User::class)->create();
-
         $response = $this->actingAs($actingUser)
-            ->get(route('admin.users.show', $user));
+            ->get($url);
 
         $response->assertOk()
             ->assertViewIs('admin.show')
@@ -45,12 +57,18 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testEdit()
     {
+        $createdUser = factory(User::class)->create();
+
+        $url = route('admin.users.edit', $createdUser);
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
-        $user = factory(User::class)->create();
-
         $response = $this->actingAs($actingUser)
-            ->get(route('admin.users.edit', $user));
+            ->get($url);
 
         $response->assertOk()
             ->assertViewIs('admin.edit')
@@ -60,11 +78,9 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testUpdate()
     {
-        $actingUser = factory(User::class)->create();
+        $createdUser = factory(User::class)->create();
 
-        $user = factory(User::class)->create();
-
-        $url = route('admin.users.update', $user);
+        $url = route('admin.users.update', $createdUser);
 
         $password = $this->faker->password();
 
@@ -75,15 +91,21 @@ class UserControllerTest extends TestCase
             'password_confirmation' => $password
         ];
 
+        $response = $this->patch($url, $formData);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
         $response = $this->actingAs($actingUser)
             ->patch($url, $formData);
 
-        $response->assertRedirect(route('admin.users.show', $user));
+        $response->assertRedirect(route('admin.users.show', $createdUser));
 
         $response->assertSessionHas('status', __('statuses.users.updated'));
 
         $this->assertDatabaseHas('users', [
-            'id' => $user->id,
+            'id' => $createdUser->id,
             'name' => $formData['name'],
             'email' => $formData['email']
         ]);
@@ -92,6 +114,12 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testCreate()
     {
+        $url = route('admin.users.create');
+
+        $response = $this->get($url);
+
+        $response->assertRedirect('login');
+
         $actingUser = factory(User::class)->create();
 
         $response = $this->actingAs($actingUser)
@@ -104,8 +132,6 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testStore()
     {
-        $actingUser = factory(User::class)->create();
-
         $url = route('admin.users.store');
 
         $password = $this->faker->password();
@@ -116,6 +142,12 @@ class UserControllerTest extends TestCase
             'password' => $password,
             'password_confirmation' => $password
         ];
+
+        $response = $this->post($url, $formData);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
 
         $response = $this->actingAs($actingUser)
             ->post($url, $formData);
@@ -133,40 +165,52 @@ class UserControllerTest extends TestCase
     /** @test */
     public function testDestroy()
     {
+        $createdUser = factory(User::class)->create();
+
+        $url = route('admin.users.destroy', $createdUser);
+
+        $response = $this->delete($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
-        $user = factory(User::class)->create();
-
         $response = $this->actingAs($actingUser)
-            ->delete(route('admin.users.destroy', $user));
+            ->delete($url);
 
         $response->assertRedirect(route('admin.users.index'));
 
         $response->assertSessionHas('status', __('statuses.users.destroyed'));
 
         $this->assertSoftDeleted('users', [
-            'id' => $user->id
+            'id' => $createdUser->id
         ]);
     }
 
     /** @test */
     public function testRestore()
     {
-        $actingUser = factory(User::class)->create();
-
-        $user = factory(User::class)->create([
+        $createdUser = factory(User::class)->create([
             'deleted_at' => now()
         ]);
 
+        $url = route('admin.users.restore', $createdUser);
+
+        $response = $this->patch($url);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
         $response = $this->actingAs($actingUser)
-            ->patch(route('admin.users.restore', $user));
+            ->patch($url);
 
         $response->assertRedirect(route('admin.users.index'));
 
         $response->assertSessionHas('status', __('statuses.users.restored'));
 
         $this->assertDatabaseHas('users', [
-            'id' => $user->id
+            'id' => $createdUser->id
         ]);
     }
 }

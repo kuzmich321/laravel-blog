@@ -16,6 +16,12 @@ class PostControllerTest extends TestCase
     /** @test */
     public function testIndex()
     {
+        $url = route('admin.posts.index');
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
         factory(Post::class, 3)->create();
@@ -31,12 +37,18 @@ class PostControllerTest extends TestCase
     /** @test */
     public function testShow()
     {
+        $createdPost = factory(Post::class)->create();
+
+        $url = route('admin.posts.show', $createdPost);
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
         $actingUser = factory(User::class)->create();
 
-        $post = factory(Post::class)->create();
-
         $response = $this->actingAs($actingUser)
-            ->get(route('admin.posts.show', $post));
+            ->get($url);
 
         $response->assertOk()
             ->assertViewIs('admin.posts.show')
