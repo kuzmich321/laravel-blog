@@ -54,4 +54,53 @@ class PostControllerTest extends TestCase
             ->assertViewIs('admin.posts.show')
             ->assertViewHas('post');
     }
+
+    /** @test */
+    public function testEdit()
+    {
+        $createdPost = factory(Post::class)->create();
+
+        $url = route('admin.posts.edit', $createdPost);
+
+        $response = $this->get($url);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->get($url);
+
+        $response->assertOk()
+            ->assertViewIs('admin.posts.edit')
+            ->assertViewHas('post');
+    }
+
+    /** @test */
+    public function testUpdate()
+    {
+        $createdPost = factory(Post::class)->create();
+
+        $formData = [
+            'title' => $this->faker->title(),
+            'description' => $this->faker->paragraph()
+        ];
+
+        $url = route('admin.posts.update', $createdPost);
+
+        $response = $this->patch($url, $formData);
+
+        $response->assertRedirect(route('login'));
+
+        $actingUser = factory(User::class)->create();
+
+        $response = $this->actingAs($actingUser)
+            ->patch($url, $formData);
+
+        $response->assertRedirect(route('admin.posts.show', $createdPost));
+
+        $response->assertSessionHas('status', __('statuses.posts.updated'));
+
+        $this->assertDatabaseHas('posts', $formData);
+    }
 }
