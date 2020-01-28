@@ -122,8 +122,6 @@ class PostControllerTest extends TestCase
             ->assertViewIs('admin.posts.create');
     }
 
-    // Gonna be fixed soon
-
     /** @test */
     public function testStore()
     {
