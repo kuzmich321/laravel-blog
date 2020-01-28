@@ -13,7 +13,9 @@ class PostControllerTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testIndex()
     {
         $url = route('admin.posts.index');
@@ -34,7 +36,9 @@ class PostControllerTest extends TestCase
             ->assertViewHas('posts');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testShow()
     {
         $createdPost = factory(Post::class)->create();
@@ -55,7 +59,9 @@ class PostControllerTest extends TestCase
             ->assertViewHas('post');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testEdit()
     {
         $createdPost = factory(Post::class)->create();
@@ -76,7 +82,9 @@ class PostControllerTest extends TestCase
             ->assertViewHas('post');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testUpdate()
     {
         $createdPost = factory(Post::class)->create();
@@ -104,7 +112,9 @@ class PostControllerTest extends TestCase
         $this->assertDatabaseHas('posts', $formData);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testCreate()
     {
         $url = route('admin.posts.create');
@@ -122,7 +132,9 @@ class PostControllerTest extends TestCase
             ->assertViewIs('admin.posts.create');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testStore()
     {
         $url = route('admin.posts.store');
@@ -149,7 +161,9 @@ class PostControllerTest extends TestCase
         $this->assertDatabaseHas('posts', $formData);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testDestroy()
     {
         $createdPost = factory(Post::class)->create();
@@ -174,7 +188,9 @@ class PostControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testRestore()
     {
         $createdPost = factory(Post::class)->create([

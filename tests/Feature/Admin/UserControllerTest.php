@@ -12,7 +12,9 @@ class UserControllerTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testIndex()
     {
         $url = route('admin.users.index');
@@ -33,7 +35,9 @@ class UserControllerTest extends TestCase
             ->assertViewHas('users');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testShow()
     {
         $createdUser = factory(User::class)->create();
@@ -54,7 +58,9 @@ class UserControllerTest extends TestCase
             ->assertViewHas('user');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testEdit()
     {
         $createdUser = factory(User::class)->create();
@@ -75,7 +81,9 @@ class UserControllerTest extends TestCase
             ->assertViewHas('user');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testUpdate()
     {
         $createdUser = factory(User::class)->create();
@@ -111,7 +119,9 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testCreate()
     {
         $url = route('admin.users.create');
@@ -129,7 +139,9 @@ class UserControllerTest extends TestCase
             ->assertViewIs('admin.create');
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testStore()
     {
         $url = route('admin.users.store');
@@ -162,7 +174,9 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testDestroy()
     {
         $createdUser = factory(User::class)->create();
@@ -187,7 +201,9 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @return void
+     */
     public function testRestore()
     {
         $createdUser = factory(User::class)->create([
