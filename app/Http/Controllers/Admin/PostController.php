@@ -46,6 +46,8 @@ class PostController extends Controller
             'description' => 'required|min:10|max:255'
         ]);
 
+        $validatedData['user_id'] = auth()->id();
+
         Post::create($validatedData);
 
         return redirect()

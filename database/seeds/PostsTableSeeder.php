@@ -12,7 +12,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Post::class, 100)
-            ->make()
+            ->make(['user_id' => null]) // prevent from creating a new user for each post
             ->each(function ($post) {
                 $randomUser = App\User::inRandomOrder()->first();
                 $post->user_id = $randomUser->id;
