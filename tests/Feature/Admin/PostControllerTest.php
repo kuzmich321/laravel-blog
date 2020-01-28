@@ -129,19 +129,17 @@ class PostControllerTest extends TestCase
     {
         $url = route('admin.posts.store');
 
-        $createdUser = factory(User::class)->create();
+        $actingUser = factory(User::class)->create();
 
         $formData = [
             'title' => $this->faker->title(),
             'description' => $this->faker->paragraph(),
-            'user_id' => $createdUser->id
+            'user_id' => $actingUser->id
         ];
 
         $response = $this->post($url, $formData);
 
         $response->assertRedirect(route('login'));
-
-        $actingUser = factory(User::class)->create();
 
         $response = $this->actingAs($actingUser)
             ->post($url, $formData);
