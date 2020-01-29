@@ -23,9 +23,6 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -35,7 +32,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        The Blog
+                    </a>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -51,6 +50,25 @@
                             </li>
                         @endif
                     @else
+                        @if(request()->is('admin/*'))
+                            <li class="nav-item">
+                                <span class="nav-link text-dark font-weight-bold">Admin Panel</span>
+                            </li>
+                        @endif
+                        <li nav-item>
+                            <a class="nav-link"
+                               @if(request()->is('admin/*'))
+                               href="{{ route('admin.users.index') }}"
+                               @endif
+                               href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               @if(request()->is('admin/*'))
+                               href="{{ route('admin.posts.index') }}"
+                               @endif
+                               href="{{ route('posts.index') }}">Posts</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -58,9 +76,15 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if(request()->is('admin/*'))
+                                    <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->id()) }}">
+                                        Edit
+                                    </a>
+                                @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
