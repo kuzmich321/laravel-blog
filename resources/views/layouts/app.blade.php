@@ -43,11 +43,13 @@
                 <ul class="navbar-nav mr-auto">
                     @if(Str::startsWith(Route::currentRouteName(), 'admin'))
                         <li nav-item>
-                            <a class="nav-link"
+                            <a class="nav-link
+                               {{ Str::startsWith(Route::currentRouteName(), 'admin.users') ? 'active' : '' }}"
                                href="{{ route('admin.users.index') }}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'admin.posts') ? 'active' : '' }}"
                                href="{{ route('admin.posts.index') }}">Posts</a>
                         </li>
                     @else
