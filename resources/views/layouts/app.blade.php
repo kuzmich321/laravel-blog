@@ -32,9 +32,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        The Blog
-                    </a>
+                    @if(request()->is('admin/*'))
+                        <a class="navbar-brand" href="{{ route('home') }}">
+                            Admin Panel
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            The Blog
+                        </a>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -50,11 +56,6 @@
                             </li>
                         @endif
                     @else
-                        @if(request()->is('admin/*'))
-                            <li class="nav-item">
-                                <span class="nav-link text-dark font-weight-bold">Admin Panel</span>
-                            </li>
-                        @endif
                         <li nav-item>
                             <a class="nav-link"
                                @if(request()->is('admin/*'))
