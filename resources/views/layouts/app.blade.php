@@ -56,20 +56,25 @@
                             </li>
                         @endif
                     @else
-                        <li nav-item>
-                            <a class="nav-link"
-                               @if(request()->is('admin/*'))
-                               href="{{ route('admin.users.index') }}"
-                               @endif
-                               href="{{ route('users.index') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               @if(request()->is('admin/*'))
-                               href="{{ route('admin.posts.index') }}"
-                               @endif
-                               href="{{ route('posts.index') }}">Posts</a>
-                        </li>
+                        @if(request()->is('admin/*'))
+                            <li nav-item>
+                                <a class="nav-link"
+                                   href="{{ route('admin.users.index') }}">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{ route('admin.posts.index') }}">Posts</a>
+                            </li>
+                        @else
+                            <li nav-item>
+                                <a class="nav-link"
+                                   href="{{ route('users.index') }}">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{ route('posts.index') }}">Posts</a>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
