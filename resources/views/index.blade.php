@@ -4,26 +4,17 @@
 
 @section('content')
     <div class="container">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th>Read</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="card-columns">
             @foreach($users as $user)
-                <tr>
-                    <th scope="row">{{$user->id}}</th>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td><a href="{{ route('users.show', $user) }}" class="btn btn-sm btn-info">Read</a></td>
-                </tr>
+                <div class="card bg-dark border-danger text-white">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ $user->name }} #{{ $user->id }}</h5>
+                        <p class="card-text">{{ $user->email }}</p>
+                        <a href="{{ route('users.show', $user) }}" class="btn btn-outline-warning w-25">Read</a>
+                    </div>
+                </div>
             @endforeach
-            </tbody>
-        </table>
+        </div>
         <div class="pagination-wrapper d-flex justify-content-center">
             {{ $users->links() }}
         </div>

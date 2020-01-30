@@ -6,7 +6,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header text-secondary">
-                        Update user
+                        Edit user
                     </div>
 
                     <div class="card-body">
@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
                             <div class="button-holder d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary w-25">Edit</button>
+                                <button type="submit" class="btn btn-primary w-25">Update</button>
                             </div>
                         </form>
                     </div>
