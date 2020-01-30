@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::with('posts')->paginate();
 
-        return view('index', [
+        return view('users.index', [
             'users' => $users
         ]);
     }
@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $user->load('posts');
 
-        return view('show', [
+        return view('users.show', [
             'user' => $user
         ]);
     }
