@@ -23,8 +23,8 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            @if(request()->is('admin/*'))
-                <a class="navbar-brand" href="{{ route('home') }}">
+            @if(Str::startsWith(Route::currentRouteName(), 'admin'))
+                <a class="navbar-brand" href="{{ route('admin') }}">
                     Admin Panel
                 </a>
             @else
@@ -41,6 +41,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
+                    @if(Str::startsWith(Route::currentRouteName(), 'admin'))
+                        <li nav-item>
+                            <a class="nav-link"
+                               href="{{ route('admin.users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ route('admin.posts.index') }}">Posts</a>
+                        </li>
+                    @else
+                        <li nav-item>
+                            <a class="nav-link"
+                               href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ route('posts.index') }}">Posts</a>
+                        </li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -56,23 +75,13 @@
                             </li>
                         @endif
                     @else
-                        @if(request()->is('admin/*'))
-                            <li nav-item>
-                                <a class="nav-link"
-                                   href="{{ route('admin.users.index') }}">Users</a>
-                            </li>
+                        @if(Str::startsWith(Route::currentRouteName(), 'admin'))
                             <li class="nav-item">
-                                <a class="nav-link"
-                                   href="{{ route('admin.posts.index') }}">Posts</a>
+                                <a class="nav-link" href="{{ url('/') }}">To Site</a>
                             </li>
                         @else
-                            <li nav-item>
-                                <a class="nav-link"
-                                   href="{{ route('users.index') }}">Users</a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link"
-                                   href="{{ route('posts.index') }}">Posts</a>
+                                <a class="nav-link" href="{{ route('admin') }}">To Dashboard</a>
                             </li>
                         @endif
                         <li class="nav-item dropdown">

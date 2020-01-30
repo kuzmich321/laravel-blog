@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('users', 'UserController')->only([
     'index', 'show'
 ]);
@@ -27,10 +25,15 @@ Route::resource('posts', 'PostController')->only([
     'index', 'show'
 ]);
 
-Route::namespace('Admin')->prefix('admin')->middleware('auth')->name('admin.')->group(function () {
-    Route::patch('users/{user}/restore', 'UserController@restore')->name('users.restore');
-    Route::resource('users', 'UserController');
+Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function () {
 
-    Route::patch('posts/{post}/restore', 'PostController@restore')->name('posts.restore');
-    Route::resource('posts', 'PostController');
+    Route::get('/', 'AdminController@index')->name('admin');
+
+    Route::name('admin.')->group(function () {
+        Route::patch('users/{user}/restore', 'UserController@restore')->name('users.restore');
+        Route::resource('users', 'UserController');
+
+        Route::patch('posts/{post}/restore', 'PostController@restore')->name('posts.restore');
+        Route::resource('posts', 'PostController');
+    });
 });
