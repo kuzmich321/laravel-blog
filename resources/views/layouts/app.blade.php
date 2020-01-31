@@ -54,11 +54,13 @@
                         </li>
                     @else
                         <li nav-item>
-                            <a class="nav-link"
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'users') ? 'active' : '' }}"
                                href="{{ route('users.index') }}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'posts') ? 'active' : '' }}"
                                href="{{ route('posts.index') }}">Posts</a>
                         </li>
                     @endif
