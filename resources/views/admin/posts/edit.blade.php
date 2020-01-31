@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="button-holder d-flex justify-content-center p-3">
-                        <button class="btn btn-lg btn-info w-25" type="submit">Edit</button>
+                        <button class="btn btn-lg btn-info w-25" type="submit">Update</button>
                     </div>
                 </div>
             </form>

@@ -23,9 +23,15 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+            @if(Str::startsWith(Route::currentRouteName(), 'admin'))
+                <a class="navbar-brand" href="{{ route('admin') }}">
+                    Admin Panel
+                </a>
+            @else
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    The Blog
+                </a>
+            @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -35,7 +41,29 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
+                    @if(Str::startsWith(Route::currentRouteName(), 'admin'))
+                        <li nav-item>
+                            <a class="nav-link
+                               {{ Str::startsWith(Route::currentRouteName(), 'admin.users') ? 'active' : '' }}"
+                               href="{{ route('admin.users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'admin.posts') ? 'active' : '' }}"
+                               href="{{ route('admin.posts.index') }}">Posts</a>
+                        </li>
+                    @else
+                        <li nav-item>
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'users') ? 'active' : '' }}"
+                               href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link
+                                {{ Str::startsWith(Route::currentRouteName(), 'posts') ? 'active' : '' }}"
+                               href="{{ route('posts.index') }}">Posts</a>
+                        </li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -51,6 +79,15 @@
                             </li>
                         @endif
                     @else
+                        @if(Str::startsWith(Route::currentRouteName(), 'admin'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">To Site</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">To Dashboard</a>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -60,7 +97,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

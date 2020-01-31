@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $users = User::withTrashed()->paginate();
 
-        return view('admin.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.show', [
+        return view('admin.users.show', [
             'user' => $user
         ]);
     }
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.edit', [
+        return view('admin.users.edit', [
             'user' => $user
         ]);
     }

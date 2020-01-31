@@ -53,7 +53,9 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="button-holder d-flex justify-content-center pt-3">
+                                <button class="btn btn-info w-50">Store</button>
+                            </div>
                         </form>
                     </div>
                 </div>
