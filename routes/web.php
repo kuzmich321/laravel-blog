@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'Home');
 
 Auth::routes();
 
@@ -25,7 +25,7 @@ Route::resource('posts', 'PostController')->only([
 
 Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function () {
 
-    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/', 'Index')->name('admin');
 
     Route::name('admin.')->group(function () {
         Route::patch('users/{user}/restore', 'UserController@restore')->name('users.restore');
