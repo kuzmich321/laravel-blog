@@ -18,14 +18,11 @@ class PostController extends Controller
     {
         $postQuery = Post::query();
 
-        if (request('by_user_id')) {
-            $userId = request('by_user_id');
-            $postQuery->where('user_id', $userId);
-        }
+        $postQuery->when(request('by_user_id'), function ($query, $userId) {
+            return $query->where('user_id', $userId);
+        });
 
-        $posts = $postQuery->get();
-
-        return $posts;
+        return $postQuery->paginate();
     }
 
     /**
