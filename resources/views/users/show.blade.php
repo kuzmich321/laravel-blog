@@ -21,7 +21,7 @@
                 </tr>
                 </tbody>
             </table>
-            <user-posts></user-posts>
+            <user-posts :user-id="'{{ $user->id }}'" :api-url="'{{ route('api.posts.index') }}'"></user-posts>
         </div>
     </div>
 @endsection
