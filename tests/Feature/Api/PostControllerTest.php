@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Post;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Tests\TestCase;
 
 class PostControllerTest extends TestCase
@@ -14,19 +15,24 @@ class PostControllerTest extends TestCase
     /**
      * @return void
      */
-    //TODO it expects to get data from pagination but in fact it gets pagination itself
     public function testIndex()
     {
+        $url = route('api.posts.index');
+
         $createdUser = factory(User::class)->create();
 
         $userPosts = factory(Post::class, 5)->create(['user_id' => $createdUser->id]);
 
-        $response = $this->get(route('api.posts.index'));
+        $perPage = (new Post)->getPerPage();
+
+        $paginatedPosts = (new LengthAwarePaginator($userPosts, $userPosts->count(), $perPage))
+            ->setPath($url)
+            ->toArray();
+
+        $response = $this->get($url);
 
         $response->assertOk()
             ->assertHeader('content-type', 'application/json')
-            ->assertJsonFragment(array(
-                'data' => $userPosts
-            ));
+            ->assertJson($paginatedPosts);
     }
 }
