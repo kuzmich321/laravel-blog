@@ -1,6 +1,6 @@
 <template>
     <div class="card-columns">
-        <div class="card bg-dark border-danger text-white mb-3" v-for="post in posts">
+        <div :key="post.id" class="card bg-dark border-danger text-white mb-3" v-for="post in posts">
             <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.description }}</p>
