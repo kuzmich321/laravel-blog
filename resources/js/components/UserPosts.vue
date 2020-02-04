@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <button @click="fetch(params.page++)" class="btn btn-outline-dark" v-if="meta.lastPage !== params.page">Show
+            <button @click="fetch(params.page++)" class="btn btn-outline-dark" v-if="meta.last_page !== params.page">
+                Show
                 More
             </button>
         </div>
@@ -26,14 +27,11 @@
         data() {
             return {
                 posts: [],
+                meta: {},
                 params: {
                     'by_user_id': this.userId,
                     'per_page': this.perPage,
                     'page': 1
-                },
-                meta: {
-                    lastPage: null,
-                    total: null
                 }
             }
         },
@@ -43,11 +41,9 @@
                     .get(this.apiUrl, {
                         params: {...this.params, ...params}
                     })
-                    .then(({data}) => {
-                        this.meta.lastPage = data.last_page;
-                        this.meta.total = data.total;
-
-                        this.posts = [...this.posts, ...data.data];
+                    .then(({data: {data, meta = {}}}) => {
+                        this.posts = [...this.posts, ...data];
+                        this.meta = {...this.meta, ...meta};
                     });
             }
         },

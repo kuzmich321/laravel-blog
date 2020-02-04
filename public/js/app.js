@@ -1990,20 +1990,20 @@ module.exports = {
 //
 //
 //
+//
+//
+//
             /* harmony default export */
             __webpack_exports__["default"] = ({
                 props: ['userId', 'apiUrl', 'perPage'],
                 data: function data() {
                     return {
                         posts: [],
+                        meta: {},
                         params: {
                             'by_user_id': this.userId,
                             'per_page': this.perPage,
                             'page': 1
-                        },
-                        meta: {
-                            lastPage: null,
-                            total: null
                         }
                     };
                 },
@@ -2015,10 +2015,12 @@ module.exports = {
                         axios.get(this.apiUrl, {
                             params: _objectSpread({}, this.params, {}, params)
                         }).then(function (_ref) {
-                            var data = _ref.data;
-                            _this.meta.lastPage = data.last_page;
-                            _this.meta.total = data.total;
-                            _this.posts = [].concat(_toConsumableArray(_this.posts), _toConsumableArray(data.data));
+                            var _ref$data = _ref.data,
+                                data = _ref$data.data,
+                                _ref$data$meta = _ref$data.meta,
+                                meta = _ref$data$meta === void 0 ? {} : _ref$data$meta;
+                            _this.posts = [].concat(_toConsumableArray(_this.posts), _toConsumableArray(data));
+                            _this.meta = _objectSpread({}, _this.meta, {}, meta);
                         });
                     }
                 },
@@ -37480,7 +37482,7 @@ exports._unrefActive = exports.active = function(item) {
                     ),
                     _vm._v(" "),
                     _c("div", {staticClass: "row justify-content-center"}, [
-                        _vm.meta.lastPage !== _vm.params.page
+                        _vm.meta.last_page !== _vm.params.page
                             ? _c(
                             "button",
                             {
@@ -37491,7 +37493,7 @@ exports._unrefActive = exports.active = function(item) {
                                     }
                                 }
                             },
-                            [_vm._v("Show More")]
+                            [_vm._v("\n            Show\n            More\n        ")]
                             )
                             : _vm._e()
                     ])
@@ -37527,13 +37529,13 @@ exports._unrefActive = exports.active = function(item) {
             function normalizeComponent(
                 scriptExports,
                 render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
+                staticRenderFns,
+                functionalTemplate,
+                injectStyles,
+                scopeId,
+                moduleIdentifier, /* server only */
+                shadowMode /* vue-cli only */
+            ) {
                 // Vue.extend constructor export interop
                 var options = typeof scriptExports === 'function'
                     ? scriptExports.options
@@ -37558,25 +37560,25 @@ exports._unrefActive = exports.active = function(item) {
 
                 var hook;
                 if (moduleIdentifier) { // server build
-    hook = function (context) {
-        // 2.3 injection
-        context =
-            context || // cached call
-            (this.$vnode && this.$vnode.ssrContext) || // stateful
-            (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
-        // 2.2 with runInNewContext: true
-        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-            context = __VUE_SSR_CONTEXT__
-        }
-        // inject component styles
-        if (injectStyles) {
-            injectStyles.call(this, context)
-        }
-        // register component module identifier for async chunk inferrence
-        if (context && context._registeredComponents) {
-            context._registeredComponents.add(moduleIdentifier)
-        }
-    };
+                    hook = function (context) {
+                        // 2.3 injection
+                        context =
+                            context || // cached call
+                            (this.$vnode && this.$vnode.ssrContext) || // stateful
+                            (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+                        // 2.2 with runInNewContext: true
+                        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                            context = __VUE_SSR_CONTEXT__
+                        }
+                        // inject component styles
+                        if (injectStyles) {
+                            injectStyles.call(this, context)
+                        }
+                        // register component module identifier for async chunk inferrence
+                        if (context && context._registeredComponents) {
+                            context._registeredComponents.add(moduleIdentifier)
+                        }
+                    };
     // used by ssr in case component is cached and beforeCreate
     // never gets called
     options._ssrRegister = hook
@@ -49660,11 +49662,12 @@ module.exports = g;
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
+    if (!module.webpackPolyfill) {
+        module.deprecate = function () {
+        };
+        module.paths = [];
+        // module.parent = undefined by default
+        if (!module.children) module.children = [];
         Object.defineProperty(module, "loaded", {
             enumerable: true,
             get: function () {
@@ -49739,15 +49742,16 @@ module.exports = function(module) {
             /***/
         }),
 
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+        /***/
+        "./resources/js/bootstrap.js":
+        /*!***********************************!*\
+          !*** ./resources/js/bootstrap.js ***!
+          \***********************************/
+        /*! no static exports found */
+        /***/ (function (module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/**
+            window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+            /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
@@ -49870,12 +49874,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
             /***/
         }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+        /***/
+        "./resources/sass/app.scss":
+        /*!*********************************!*\
+          !*** ./resources/sass/app.scss ***!
+          \*********************************/
+        /*! no static exports found */
+        /***/ (function (module, exports) {
 
 // removed by extract-text-webpack-plugin
 

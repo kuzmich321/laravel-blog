@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostCollection;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,9 +25,15 @@ class PostController extends Controller
 
         return
             $postQuery->when(request('per_page'), function ($query, $perPage) {
-                return $query->paginate($perPage);
+
+                $posts = $query->paginate($perPage);
+
+                return new PostCollection($posts);
             }, function ($query) {
-                return $query->get();
+
+                $posts = $query->get();
+
+                return new PostCollection($posts);
             });
     }
 
