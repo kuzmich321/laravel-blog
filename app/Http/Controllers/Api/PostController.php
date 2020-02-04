@@ -22,7 +22,12 @@ class PostController extends Controller
             return $query->where('user_id', $userId);
         });
 
-        return $postQuery->paginate();
+        return
+            $postQuery->when(request('per_page'), function ($query, $perPage) {
+                return $query->paginate($perPage);
+            }, function ($query) {
+                return $query->get();
+            });
     }
 
     /**
