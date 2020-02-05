@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Post;
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,11 +35,14 @@ class DeleteModels extends Command
      */
     public function handle()
     {
-        $softDeletedUsers = User::onlyTrashed()->get();
-
-        foreach ($softDeletedUsers as $user) {
+        User::onlyTrashed()->each(function ($user) {
             $user->whereDate('deleted_at', '<', today()->toDateString())
                 ->forceDelete();
-        }
+        });
+
+        Post::onlyTrashed()->each(function ($post) {
+            $post->whereDate('deleted_at', '<', today()->toDateString())
+                ->forceDelete();
+        });
     }
 }
