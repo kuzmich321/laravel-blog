@@ -37391,48 +37391,6 @@ exports._unrefActive = exports.active = function(item) {
         }),
 
         /***/
-        "./node_modules/vue-axios/dist/vue-axios.min.js":
-        /*!******************************************************!*\
-          !*** ./node_modules/vue-axios/dist/vue-axios.min.js ***!
-          \******************************************************/
-        /*! no static exports found */
-        /***/ (function (module, exports, __webpack_require__) {
-
-            "use strict";
-            var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-            var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-                return typeof o
-            } : function (o) {
-                return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o
-            };
-            !function () {
-                function o(e, t) {
-                    if (!o.installed) {
-                        if (o.installed = !0, !t) return void console.error("You have to install axios");
-                        e.axios = t, Object.defineProperties(e.prototype, {
-                            axios: {
-                                get: function () {
-                                    return t
-                                }
-                            }, $http: {
-                                get: function () {
-                                    return t
-                                }
-                            }
-                        })
-                    }
-                }
-
-                "object" == (false ? undefined : _typeof(exports)) ? module.exports = o : true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-                    return o
-                }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-                __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined
-            }();
-
-            /***/
-        }),
-
-        /***/
         "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserPosts.vue?vue&type=template&id=1b394ced&":
         /*!************************************************************************************************************************************************************************************************************!*\
           !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserPosts.vue?vue&type=template&id=1b394ced& ***!
@@ -37591,19 +37549,19 @@ exports._unrefActive = exports.active = function(item) {
                 }
 
                 if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-        options._injectStyles = hook;
-      // register for functioal component in vue file
-        var originalRender = options.render;
-      options.render = function renderWithStyleInjection (h, context) {
-          hook.call(context);
-        return originalRender(h, context)
-      }
+                    if (options.functional) {
+                        // for template-only hot-reload because in that case the render fn doesn't
+                        // go through the normalizer
+                        options._injectStyles = hook;
+                        // register for functioal component in vue file
+                        var originalRender = options.render;
+                        options.render = function renderWithStyleInjection(h, context) {
+                            hook.call(context);
+                            return originalRender(h, context)
+                        }
     } else {
       // inject component registration as beforeCreate hook
-        var existing = options.beforeCreate;
+                        var existing = options.beforeCreate;
       options.beforeCreate = existing
         ? [].concat(existing, hook)
         : [hook]
@@ -49696,19 +49654,9 @@ module.exports = function(module) {
         /*!*****************************!*\
           !*** ./resources/js/app.js ***!
           \*****************************/
-        /*! no exports provided */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+        /*! no static exports found */
+        /***/ (function (module, exports, __webpack_require__) {
 
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */
-            var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-            /* harmony import */
-            var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */
-            var vue_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
-            /* harmony import */
-            var vue_axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_1__);
             /**
              * First we will load all of this project's JavaScript dependencies which
              * includes Vue and other libraries. It is a great starting point when
@@ -49717,9 +49665,6 @@ module.exports = function(module) {
             __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
             window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-
-
-            window.Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_0___default.a);
             /**
              * The following block of code may be used to automatically register your
              * Vue components. It will recursively scan this directory for the Vue
@@ -49764,10 +49709,11 @@ module.exports = function(module) {
                 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
                 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-} catch (e) {}
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
+            } catch (e) {
+            }
+            /**
+             * We'll load the axios HTTP library which allows us to easily issue requests
+             * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
@@ -49895,12 +49841,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
           !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
           \*************************************************************/
         /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+        /***/ (function (module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/sass/app.scss */"./resources/sass/app.scss");
+            __webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/js/app.js */"./resources/js/app.js");
+            module.exports = __webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
-/***/ })
+            /***/
+        })
 
-/******/ });
+        /******/
+    });
