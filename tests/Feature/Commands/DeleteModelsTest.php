@@ -30,7 +30,7 @@ class DeleteModelsTest extends TestCase
 
         $this->artisan(DeleteModels::class);
 
-        $this->assertDeleted('users', [$softDeletedUser]);
-        $this->assertDeleted('posts', [$softDeletedPost]);
+        $this->assertDeleted($softDeletedUser->getTable(), [$softDeletedUser]);
+        $this->assertDeleted($softDeletedPost->getTable(), [$softDeletedPost]);
     }
 }
