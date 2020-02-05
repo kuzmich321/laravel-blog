@@ -109,7 +109,7 @@ class PostControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.posts.updated'));
 
-        $this->assertDatabaseHas('posts', $formData);
+        $this->assertDatabaseHas($createdPost->getTable(), $formData);
     }
 
     /**
@@ -183,7 +183,7 @@ class PostControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.posts.destroyed'));
 
-        $this->assertSoftDeleted('posts', [
+        $this->assertSoftDeleted($createdPost->getTable(), [
             'id' => $createdPost->id
         ]);
     }
@@ -212,7 +212,7 @@ class PostControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.posts.restored'));
 
-        $this->assertDatabaseHas('posts', [
+        $this->assertDatabaseHas($createdPost->getTable(), [
             'id' => $createdPost->id
         ]);
     }
