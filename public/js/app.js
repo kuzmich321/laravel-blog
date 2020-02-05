@@ -37579,16 +37579,18 @@ exports._unrefActive = exports.active = function(item) {
                             context._registeredComponents.add(moduleIdentifier)
                         }
                     };
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
+                    // used by ssr in case component is cached and beforeCreate
+                    // never gets called
+                    options._ssrRegister = hook
+                } else if (injectStyles) {
+                    hook = shadowMode
+                        ? function () {
+                            injectStyles.call(this, this.$root.$options.shadowRoot)
+                        }
+                        : injectStyles
+                }
 
-  if (hook) {
+                if (hook) {
     if (options.functional) {
       // for template-only hot-reload because in that case the render fn doesn't
       // go through the normalizer
@@ -49752,16 +49754,16 @@ module.exports = function(module) {
 
             window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
             /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+             * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+             * for JavaScript based Bootstrap features such as modals and tabs. This
+             * code may be modified to fit the specific needs of your application.
+             */
 
-try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+            try {
+                window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+                window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+                __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -49884,13 +49886,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
+            /***/
+        }),
 
-/***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
-/*! no static exports found */
+        /***/
+        0:
+        /*!*************************************************************!*\
+          !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+          \*************************************************************/
+        /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/andrew/PhpstormProjects/laravel-blog/resources/js/app.js */"./resources/js/app.js");
