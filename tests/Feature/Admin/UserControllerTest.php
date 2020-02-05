@@ -112,7 +112,7 @@ class UserControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.users.updated'));
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas($createdUser->getTable(), [
             'id' => $createdUser->id,
             'name' => $formData['name'],
             'email' => $formData['email']
@@ -168,7 +168,7 @@ class UserControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.users.created'));
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas($actingUser->getTable(), [
             'name' => $formData['name'],
             'email' => $formData['email']
         ]);
@@ -196,7 +196,7 @@ class UserControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.users.destroyed'));
 
-        $this->assertSoftDeleted('users', [
+        $this->assertSoftDeleted($createdUser->getTable(), [
             'id' => $createdUser->id
         ]);
     }
@@ -225,7 +225,7 @@ class UserControllerTest extends TestCase
 
         $response->assertSessionHas('status', __('statuses.users.restored'));
 
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas($createdUser->getTable(), [
             'id' => $createdUser->id
         ]);
     }

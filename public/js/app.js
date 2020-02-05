@@ -37559,19 +37559,19 @@ exports._unrefActive = exports.active = function(item) {
                             hook.call(context);
                             return originalRender(h, context)
                         }
-    } else {
-      // inject component registration as beforeCreate hook
+                    } else {
+                        // inject component registration as beforeCreate hook
                         var existing = options.beforeCreate;
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
+                        options.beforeCreate = existing
+                            ? [].concat(existing, hook)
+                            : [hook]
+                    }
+                }
 
-  return {
-    exports: scriptExports,
-    options: options
-  }
+                return {
+                    exports: scriptExports,
+                    options: options
+                }
 }
 
 
@@ -49714,17 +49714,17 @@ module.exports = function(module) {
             /**
              * We'll load the axios HTTP library which allows us to easily issue requests
              * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+             * CSRF token as a header based on the value of the "XSRF" token cookie.
+             */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+            window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+            window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            /**
+             * Echo exposes an expressive API for subscribing to channels and listening
+             * for events that are broadcast by Laravel. Echo and event broadcasting
+             * allows your team to easily build robust real-time web applications.
+             */
 // import Echo from 'laravel-echo';
 // window.Pusher = require('pusher-js');
 // window.Echo = new Echo({
