@@ -37572,7 +37572,7 @@ exports._unrefActive = exports.active = function(item) {
                     exports: scriptExports,
                     options: options
                 }
-}
+            }
 
 
 /***/ }),
