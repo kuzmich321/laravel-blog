@@ -4975,7 +4975,7 @@
                     var _ret = _loop(i);
 
                     if (_ret === "continue")
-                        }
+                }
 
                 return createdDocument.body.innerHTML;
             }
