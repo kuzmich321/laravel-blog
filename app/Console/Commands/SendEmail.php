@@ -24,7 +24,8 @@ class SendEmail extends Command
      */
     public function handle()
     {
-        $recentPosts = Post::whereDate('created_at', '>', today()->subWeek()->toDateString())
+        $recentPosts = Post::query()
+            ->whereDate('created_at', '>', today()->subWeek()->toDateString())
             ->latest()
             ->limit(10)
             ->get();
@@ -33,8 +34,12 @@ class SendEmail extends Command
             ->limit(1) //TODO when I know laravel queues
             ->get()
             ->each(function ($user) use ($recentPosts) {
-                Mail::to($user->email)
-                    ->send((new RecentPosts($recentPosts)));
+
+                $recentPosts = $recentPosts->filter(function ($post) use ($user) {
+                    return $post->user_id != $user->id;
+                });
+
+                Mail::send(new RecentPosts($user, $recentPosts));
             });
     }
 }

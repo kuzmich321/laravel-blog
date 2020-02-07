@@ -1,5 +1,8 @@
-New Posts !
+Hey there {{ $user->name }} !
+
+Don't miss our new posts ! :)
+
 @foreach($posts as $post)
     {{ $post->title }}
-    {{ $post->description }}
+    {{ route('posts.show', $post) }}
 @endforeach

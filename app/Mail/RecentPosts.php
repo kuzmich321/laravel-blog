@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -15,13 +16,17 @@ class RecentPosts extends Mailable
      */
     public $posts;
 
+    private $user;
+
     /**
      * Create a new message instance.
      *
+     * @param User $user
      * @param Collection $posts
      */
-    public function __construct(Collection $posts)
+    public function __construct(User $user, Collection $posts)
     {
+        $this->user = $user;
         $this->posts = $posts;
     }
 
@@ -33,7 +38,11 @@ class RecentPosts extends Mailable
     public function build()
     {
         return $this->from(config('email.recent_posts_email'))
+            ->to($this->user)
             ->subject(config('email.recent_posts_subject'))
-            ->text('emails.newPosts', ['posts' => $this->posts]);
+            ->text('emails.newPosts', [
+                'posts' => $this->posts,
+                'user' => $this->user
+            ]);
     }
 }
