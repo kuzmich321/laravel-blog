@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\DeleteModels;
+use App\Console\Commands\SendEmail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +28,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command(DeleteModels::class)
             ->daily();
+
+        $schedule->command(SendEmail::class)
+            ->weekly();
     }
 
     /**
