@@ -32,8 +32,8 @@ class RecentPosts extends Mailable
      */
     public function build()
     {
-        return $this->from('laravel-blog@dev.com')
-            ->subject('New Posts')
+        return $this->from(config('email.recent_posts_email'))
+            ->subject(config('email.recent_posts_subject'))
             ->text('emails.newPosts', ['posts' => $this->posts]);
     }
 }
