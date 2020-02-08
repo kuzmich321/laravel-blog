@@ -30,16 +30,16 @@ class SendEmail extends Command
             ->limit(10)
             ->get();
 
-        User::query()
-            ->limit(1) //TODO when I know laravel queues
-            ->get()
-            ->each(function ($user) use ($recentPosts) {
+        $delay = now();
+
+        User::get()
+            ->each(function ($user) use ($recentPosts, $delay) {
 
                 $recentPosts = $recentPosts->filter(function ($post) use ($user) {
                     return $post->user_id != $user->id;
                 });
 
-                Mail::send(new RecentPosts($user, $recentPosts));
+                Mail::later($delay->addMinute(), new RecentPosts($user, $recentPosts));
             });
     }
 }
