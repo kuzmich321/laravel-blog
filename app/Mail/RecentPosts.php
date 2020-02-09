@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 
 class RecentPosts extends Mailable implements shouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Queueable, SerializesModels;
     /**
      * @var Collection
      */
