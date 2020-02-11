@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\UserRestored;
+use App\Events\UserSoftDeleted;
+use App\Listeners\RestorePosts;
+use App\Listeners\SoftDeletePosts;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,14 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        UserSoftDeleted::class => [
+            SoftDeletePosts::class
+        ],
+
+        UserRestored::class => [
+            RestorePosts::class
+        ]
     ];
 
     /**
