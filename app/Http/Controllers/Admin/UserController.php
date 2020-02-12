@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\UserRestored;
-use App\Events\UserSoftDeleted;
 use App\Http\Controllers\Controller;
 use App\User;
 use Exception;
