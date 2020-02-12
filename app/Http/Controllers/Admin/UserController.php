@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\UserRestored;
-use App\Events\UserSoftDeleted;
 use App\Http\Controllers\Controller;
 use App\User;
 use Exception;
@@ -124,8 +122,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        event(new UserSoftDeleted($user));
-
         return redirect()
             ->route('admin.users.index')
             ->with('status', __('statuses.users.destroyed'));
@@ -140,8 +136,6 @@ class UserController extends Controller
         User::withTrashed()
             ->findOrFail($id)
             ->restore();
-
-        event(new UserRestored(User::findOrFail($id)));
 
         return redirect()
             ->route('admin.users.index')
