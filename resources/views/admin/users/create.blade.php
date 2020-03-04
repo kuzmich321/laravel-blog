@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.users.store') }}" method="POST">
+                        <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">{{ __('Name') }}</label>
@@ -51,6 +51,11 @@
                                 @error('password_confirmation')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                            </div>
+
+                            <div class="form-group d-flex flex-column">
+                                <label for="image">Profile Image</label>
+                                <input type="file" name="image">
                             </div>
 
                             <div class="button-holder d-flex justify-content-center pt-3">

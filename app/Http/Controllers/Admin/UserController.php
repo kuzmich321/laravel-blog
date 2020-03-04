@@ -45,12 +45,19 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8',
+            'image' => 'file|image|nullable|max:5000'
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        User::create($validatedData);
+        $user = User::create($validatedData);
+
+        if (request()->has('image')) {
+            $user->update([
+                'image' => request()->image->store('uploads', 's3')
+            ]);
+        }
 
         return redirect()
             ->route('admin.users.index')
@@ -69,6 +76,7 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -105,6 +113,12 @@ class UserController extends Controller
         }
 
         $user->update($validatedData);
+
+        if (request()->has('image')) {
+            $user->update([
+                'image' => request()->image->store('uploads', 's3')
+            ]);
+        }
 
         return redirect()
             ->route('admin.users.show', $user)
